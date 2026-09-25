@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Quality Checks & Test Suite
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Format check (oxfmt)
+        run: bun run fmt:check
+
+      - name: Lint check (oxlint)
+        run: bun run lint
+
+      - name: Type check (tsc)
+        run: bun run typecheck
+
+      - name: Test suite (rstest)
+        run: bun run test
+
+      - name: Build artifact (tsdown)
+        run: bun run build
