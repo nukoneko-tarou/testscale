@@ -6,7 +6,7 @@ import { renderTerminalReport } from "./renderer/terminal.js";
 
 import { evaluateCiAssertions } from "./judge/ci-assert.js";
 
-const cli = cac("testscale");
+const cli = cac("testscales");
 
 cli
   .command("[dir]", "Weigh the testing archetype of a repository")
@@ -109,7 +109,7 @@ cli
           console.log(sep);
         }
       } catch (error) {
-        console.error(pc.red(`\n❌ Error during testscale execution:`));
+        console.error(pc.red(`\n❌ Error during testscales execution:`));
         if (error instanceof Error) {
           console.error(pc.red(`   ${error.message}`));
         } else {

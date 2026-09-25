@@ -1,10 +1,10 @@
-# Contributing to testscale
+# Contributing to testscales
 
-Thank you for your interest in contributing to `testscale`! We welcome bug reports, heuristics improvements for test frameworks, and documentation enhancements.
+Thank you for your interest in contributing to `testscales`! We welcome bug reports, heuristics improvements for test frameworks, and documentation enhancements.
 
 ## 🛠️ Development Setup
 
-`testscale` is built with [Bun](https://bun.sh/) and TypeScript:
+`testscales` is built with [Bun](https://bun.sh/) and TypeScript:
 
 ```bash
 # Clone the repository
@@ -45,9 +45,9 @@ bun run fmt
 
 1. **Focused Diffs**: Keep changes focused on a single feature, bug fix, or language heuristic.
 2. **Include Tests**: If adding support for a new framework or layer pattern, include runnable tests under `tests/`.
-3. **Preserve Performance**: `testscale` is engineered for sub-second execution across large repositories. Avoid heavy AST parsers or blocking disk operations in the fast paths.
+3. **Preserve Performance**: `testscales` is engineered for sub-second execution across large repositories. Avoid heavy AST parsers or blocking disk operations in the fast paths.
 4. **CI Passing**: All GitHub Actions CI checks must pass before a PR can be merged.
 
 ## 📄 License
 
-By contributing to `testscale`, you agree that your contributions will be licensed under the project's [MIT License](./LICENSE).
+By contributing to `testscales`, you agree that your contributions will be licensed under the project's [MIT License](./LICENSE).

@@ -1,4 +1,4 @@
-# Testscale ⚖️
+# Testscales ⚖️
 
 > **Weigh the soul and archetype of your test suite with divine precision.**
 
@@ -22,7 +22,7 @@ npx testscales
 ## 📸 Output Preview
 
 <p align="center">
-  <img src="./assets/output-preview.png" alt="Testscale Output Preview" width="820" />
+  <img src="./assets/output-preview.png" alt="Testscales Output Preview" width="820" />
 </p>
 
 ---
@@ -44,7 +44,7 @@ Tested across major open-source codebases, completing analysis in milliseconds:
 
 ## 🏛️ The Divine Archetypes
 
-`testscale` is **dogma-neutral**. There is no single "right" shape—each archetype reflects distinct tradeoffs appropriate for different engineering goals:
+`testscales` is **dogma-neutral**. There is no single "right" shape—each archetype reflects distinct tradeoffs appropriate for different engineering goals:
 
 | Archetype | Silhouette | Best Suited For | Philosophy |
 | :--- | :---: | :--- | :--- |
@@ -99,14 +99,14 @@ npx testscales --json
 | `--min-integration <pct>` | Fail if INTEGRATION percentage is below threshold (e.g. `30`) | |
 | `--min-unit <pct>` | Fail if UNIT percentage is below threshold (e.g. `20`) | |
 | `--ignore <patterns>` | Comma-separated glob patterns to ignore | `node_modules,dist,...` |
-| `-v, --version` | Output testscale version | |
+| `-v, --version` | Output testscales version | |
 | `-h, --help` | Display CLI help menu | |
 
 ---
 
 ## 🛡️ CI Enforcement & Guardrails
 
-Prevent architecture decay over time. Use `testscale` in your CI pipeline as a quality gate to fail builds if your test suite drifts into forbidden shapes or violates layer boundaries:
+Prevent architecture decay over time. Use `testscales` in your CI pipeline as a quality gate to fail builds if your test suite drifts into forbidden shapes or violates layer boundaries:
 
 ```bash
 # Enforce a Testing Trophy architecture
@@ -129,7 +129,7 @@ name: Test Suite Shape Gate
 on: [pull_request, push]
 
 jobs:
-  testscale:
+  testscales:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -153,7 +153,7 @@ jobs:
 
 ## 🧪 Programmatic API
 
-While most teams use the CLI directly, `testscale` exports fully typed APIs for custom automation, bots, and platform engineering:
+While most teams use the CLI directly, `testscales` exports fully typed APIs for custom automation, bots, and platform engineering:
 
 ```typescript
 import { weighRepository } from 'testscales'
@@ -171,7 +171,7 @@ console.log(result.layers.unit.percentage) // 76
 * **🤖 PR Review & ChatOps Bots**: Comment on pull requests when a diff degrades testing balance (e.g. drifting from *Testing Trophy* toward *Ice Cream Cone*).
 * **📊 Engineering Metrics Dashboards**: Aggregate test suite archetypes across hundreds of company repositories in scheduled batch jobs.
 * **📈 Drift & Regression Alarms**: Write custom CI scripts comparing PR metrics against base branch baselines (e.g., alert if E2E ratio increases by >5%).
-* **🔌 Internal Developer Tooling**: Embed `testscale` into corporate CLI diagnostics tools (e.g., `company-cli doctor`).
+* **🔌 Internal Developer Tooling**: Embed `testscales` into corporate CLI diagnostics tools (e.g., `company-cli doctor`).
 
 ---
 

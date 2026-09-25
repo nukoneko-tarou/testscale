@@ -8,7 +8,7 @@ describe("detectConfigs", () => {
   let tempDir: string;
 
   beforeEach(() => {
-    tempDir = mkdtempSync(join(tmpdir(), "testscale-detector-"));
+    tempDir = mkdtempSync(join(tmpdir(), "testscales-detector-"));
   });
 
   afterEach(() => {

@@ -119,7 +119,7 @@ export function renderTerminalReport(result: ScaleResult): string {
   lines.push("");
   lines.push(doubleSep);
   lines.push(
-    `   ${pc.bold(pc.yellow("⚖️   T E S T S C A L E"))}   ${pc.dim("—")}   ${pc.italic(pc.white("Weighing the Soul of Your Tests"))}`,
+    `   ${pc.bold(pc.yellow("⚖️   T E S T S C A L E S"))}   ${pc.dim("—")}   ${pc.italic(pc.white("Weighing the Soul of Your Tests"))}`,
   );
   lines.push(doubleSep);
   lines.push("");

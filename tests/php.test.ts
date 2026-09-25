@@ -231,7 +231,7 @@ it('can fetch profile', function () {
     let tempDir: string;
 
     beforeEach(() => {
-      tempDir = mkdtempSync(join(tmpdir(), "testscale-php-"));
+      tempDir = mkdtempSync(join(tmpdir(), "testscales-php-"));
     });
 
     afterEach(() => {
