@@ -1,0 +1,65 @@
+{
+  "name": "testscale",
+  "version": "0.1.0",
+  "description": "Weigh the soul and archetype of your test suite with divine precision",
+  "type": "module",
+  "bin": {
+    "testscale": "./dist/cli.mjs"
+  },
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "tsdown --watch",
+    "build": "tsdown",
+    "prepack": "tsdown",
+    "lint": "oxlint src",
+    "fmt": "oxfmt src tests",
+    "fmt:check": "oxfmt --check src tests",
+    "test": "rstest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "test",
+    "testing",
+    "testing-trophy",
+    "testing-pyramid",
+    "test-pyramid",
+    "quality",
+    "archetype",
+    "ci",
+    "metrics",
+    "cli"
+  ],
+  "author": "nukoneko-tarou",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nukoneko-tarou/testscale.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nukoneko-tarou/testscale/issues"
+  },
+  "homepage": "https://github.com/nukoneko-tarou/testscale#readme",
+  "devDependencies": {
+    "@rstest/core": "^0.12.1",
+    "@types/node": "^26.6.2",
+    "oxfmt": "^0.70.0",
+    "oxlint": "^1.85.0",
+    "tsdown": "^0.23.0",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "cac": "^7.0.0",
+    "picocolors": "^1.1.1",
+    "tinyglobby": "^0.2.17"
+  }
+}
