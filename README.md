@@ -2,8 +2,12 @@
 
 > **Weigh the soul and archetype of your test suite with divine precision.**
 
-[![npm version](https://img.shields.io/npm/v/testscale.svg?style=flat-square)](https://www.npmjs.com/package/testscale)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
+<p align="center">
+  <a href="https://github.com/nukoneko-tarou/testscale/actions"><img src="https://github.com/nukoneko-tarou/testscale/actions/workflows/ci.yml/badge.svg" alt="CI Status" /></a>
+  <a href="https://www.npmjs.com/package/testscale"><img src="https://img.shields.io/npm/v/testscale.svg?style=flat-square&color=cb3837" alt="npm version" /></a>
+  <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg?style=flat-square" alt="Node Version" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="License: MIT" /></a>
+</p>
 
 Is your codebase a **Testing Trophy**, a **Classic Pyramid**, an **Ice Cream Cone**, or **Prayer-Driven Void**?
 
