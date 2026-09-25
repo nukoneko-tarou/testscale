@@ -4,17 +4,17 @@
 
 <p align="center">
   <a href="https://github.com/nukoneko-tarou/testscale/actions"><img src="https://github.com/nukoneko-tarou/testscale/actions/workflows/ci.yml/badge.svg" alt="CI Status" /></a>
-  <a href="https://www.npmjs.com/package/testscale"><img src="https://img.shields.io/npm/v/testscale.svg?style=flat-square&color=cb3837" alt="npm version" /></a>
+  <a href="https://www.npmjs.com/package/testscales"><img src="https://img.shields.io/npm/v/testscales.svg?style=flat-square&color=cb3837" alt="npm version" /></a>
   <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg?style=flat-square" alt="Node Version" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="License: MIT" /></a>
 </p>
 
 Is your codebase a **Testing Trophy**, a **Classic Pyramid**, an **Ice Cream Cone**, or **Prayer-Driven Void**?
 
-`testscale` is a zero-config, blazing-fast CLI that scans your repository, categorizes your tests across four strata (Static, Unit, Integration, E2E), and weighs them on the ancient scales of software engineering to reveal your **testing archetype**.
+`testscales` is a zero-config, blazing-fast CLI that scans your repository, categorizes your tests across four strata (Static, Unit, Integration, E2E), and weighs them on the ancient scales of software engineering to reveal your **testing archetype**.
 
 ```bash
-npx testscale
+npx testscales
 ```
 
 ---
@@ -63,22 +63,22 @@ Tested across major open-source codebases, completing analysis in milliseconds:
 
 ### Run directly with `npx`
 ```bash
-npx testscale
+npx testscales
 ```
 
 ### Inspect a specific directory
 ```bash
-npx testscale ./packages/server
+npx testscales ./packages/server
 ```
 
 ### Verbose Mode (Inspect reason per file)
 ```bash
-npx testscale --verbose
+npx testscales --verbose
 ```
 
 ### JSON Output (CI / Pipeline integration)
 ```bash
-npx testscale --json
+npx testscales --json
 ```
 
 ---
@@ -110,16 +110,16 @@ Prevent architecture decay over time. Use `testscale` in your CI pipeline as a q
 
 ```bash
 # Enforce a Testing Trophy architecture
-npx testscale --assert trophy
+npx testscales --assert trophy
 
 # Allow either Trophy or Pyramid, but forbid Void or Ice Cream Cone
-npx testscale --assert trophy,pyramid --forbid ice-cream-cone,void
+npx testscales --assert trophy,pyramid --forbid ice-cream-cone,void
 
 # Guardrails: Cap slow E2E tests at 20% and require at least 15% static defense
-npx testscale --max-e2e 20 --min-static 15
+npx testscales --max-e2e 20 --min-static 15
 
 # Default CI mode: passes normal tests, immediately fails on "Prayer-Driven Void"
-npx testscale --ci
+npx testscales --ci
 ```
 
 ### GitHub Actions Workflow
@@ -132,11 +132,11 @@ jobs:
   testscale:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npx testscale --assert trophy,diamond --max-e2e 25
+      - run: npx testscales --assert trophy,diamond --max-e2e 25
 ```
 
 ---
@@ -156,7 +156,7 @@ jobs:
 While most teams use the CLI directly, `testscale` exports fully typed APIs for custom automation, bots, and platform engineering:
 
 ```typescript
-import { weighRepository } from 'testscale'
+import { weighRepository } from 'testscales'
 
 const result = await weighRepository('./my-repo', {
   verbose: true,
