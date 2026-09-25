@@ -5,6 +5,7 @@ import { weighRepository } from "./index.js";
 import { renderTerminalReport } from "./renderer/terminal.js";
 
 import { evaluateCiAssertions } from "./judge/ci-assert.js";
+import pkg from "../package.json" with { type: "json" };
 
 const cli = cac("testscales");
 
@@ -121,6 +122,6 @@ cli
   );
 
 cli.help();
-cli.version("0.1.0");
+cli.version(pkg.version);
 
 cli.parse();
