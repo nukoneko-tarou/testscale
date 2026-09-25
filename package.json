@@ -4,8 +4,7 @@
   "description": "Weigh the soul and archetype of your test suite with divine precision",
   "type": "module",
   "bin": {
-    "testscales": "dist/cli.mjs",
-    "testscale": "dist/cli.mjs"
+    "testscales": "dist/cli.mjs"
   },
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
@@ -54,12 +53,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nukoneko-tarou/testscale.git"
+    "url": "git+https://github.com/nukoneko-tarou/testscales.git"
   },
   "bugs": {
-    "url": "https://github.com/nukoneko-tarou/testscale/issues"
+    "url": "https://github.com/nukoneko-tarou/testscales/issues"
   },
-  "homepage": "https://github.com/nukoneko-tarou/testscale#readme",
+  "homepage": "https://github.com/nukoneko-tarou/testscales#readme",
   "devDependencies": {
     "@rstest/core": "^0.12.1",
     "@types/node": "^26.6.2",

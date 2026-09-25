@@ -8,8 +8,8 @@ Thank you for your interest in contributing to `testscales`! We welcome bug repo
 
 ```bash
 # Clone the repository
-git clone https://github.com/nukoneko-tarou/testscale.git
-cd testscale
+git clone https://github.com/nukoneko-tarou/testscales.git
+cd testscales
 
 # Install dependencies
 bun install

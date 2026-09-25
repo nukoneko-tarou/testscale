@@ -3,7 +3,7 @@
 > **Weigh the soul and archetype of your test suite with divine precision.**
 
 <p align="center">
-  <a href="https://github.com/nukoneko-tarou/testscale/actions"><img src="https://github.com/nukoneko-tarou/testscale/actions/workflows/ci.yml/badge.svg" alt="CI Status" /></a>
+  <a href="https://github.com/nukoneko-tarou/testscales/actions"><img src="https://github.com/nukoneko-tarou/testscales/actions/workflows/ci.yml/badge.svg" alt="CI Status" /></a>
   <a href="https://www.npmjs.com/package/testscales"><img src="https://img.shields.io/npm/v/testscales.svg?style=flat-square&color=cb3837&cache=1" alt="npm version" /></a>
   <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg?style=flat-square" alt="Node Version" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="License: MIT" /></a>
