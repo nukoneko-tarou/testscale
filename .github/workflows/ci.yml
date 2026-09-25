@@ -36,3 +36,13 @@ jobs:
 
       - name: Build artifact (tsdown)
         run: bun run build
+
+      - name: Setup Node.js 20 (LTS)
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Verify CLI execution on Node.js 20
+        run: |
+          node dist/cli.mjs --version
+          node dist/cli.mjs --help
