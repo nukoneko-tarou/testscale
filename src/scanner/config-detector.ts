@@ -59,6 +59,28 @@ const STATIC_CONFIG_PATTERNS: StaticPattern[] = [
   { name: "RuboCop", files: [".rubocop.yml"], category: "linter" },
   { name: "Sorbet", files: ["sorbet/config"], category: "typechecker" },
   { name: "Steep", files: ["Steepfile"], category: "typechecker" },
+  {
+    name: "PHPStan",
+    files: ["phpstan.neon", "phpstan.neon.dist", "phpstan.dist.neon"],
+    category: "typechecker",
+  },
+  {
+    name: "Psalm",
+    files: ["psalm.xml", "psalm.xml.dist", "psalm.dist.xml"],
+    category: "typechecker",
+  },
+  { name: "Pint", files: ["pint.json"], category: "formatter" },
+  {
+    name: "PHP-CS-Fixer",
+    files: [".php-cs-fixer.php", ".php-cs-fixer.dist.php"],
+    category: "formatter",
+  },
+  {
+    name: "PHP_CodeSniffer",
+    files: ["phpcs.xml", "phpcs.xml.dist", ".phpcs.xml", ".phpcs.xml.dist"],
+    category: "linter",
+  },
+  { name: "Rector", files: ["rector.php"], category: "linter" },
 ];
 
 export function detectConfigs(rootDir: string): DetectedConfigs {
@@ -77,6 +99,27 @@ export function detectConfigs(rootDir: string): DetectedConfigs {
             if (
               /"strict"\s*:\s*true/i.test(content) ||
               /"strictNullChecks"\s*:\s*true/i.test(content)
+            ) {
+              isStrict = true;
+            }
+          } catch {
+            // ignore read error
+          }
+        } else if (name === "PHPStan") {
+          try {
+            const content = readFileSync(fullPath, "utf8");
+            if (/level:\s*(?:8|9|max)/i.test(content)) {
+              isStrict = true;
+            }
+          } catch {
+            // ignore read error
+          }
+        } else if (name === "Psalm") {
+          try {
+            const content = readFileSync(fullPath, "utf8");
+            if (
+              /errorLevel\s*=\s*["']?[12]["']?/i.test(content) ||
+              /totallyTyped\s*=\s*["']true["']/i.test(content)
             ) {
               isStrict = true;
             }
@@ -158,7 +201,45 @@ export function detectConfigs(rootDir: string): DetectedConfigs {
     }
   }
 
-  // 4. Native statically-typed language indicators (Go, Rust)
+  // 4. Check composer.json for PHP static tools
+  const composerJsonPath = join(rootDir, "composer.json");
+  if (existsSync(composerJsonPath)) {
+    try {
+      const content = readFileSync(composerJsonPath, "utf8");
+      if (!recordedTools.has("PHPStan") && /"phpstan\/phpstan"/i.test(content)) {
+        staticTools.push({ name: "PHPStan", configFile: "composer.json", category: "typechecker" });
+        recordedTools.add("PHPStan");
+      }
+      if (!recordedTools.has("Psalm") && /"vimeo\/psalm"/i.test(content)) {
+        staticTools.push({ name: "Psalm", configFile: "composer.json", category: "typechecker" });
+        recordedTools.add("Psalm");
+      }
+      if (!recordedTools.has("Pint") && /"laravel\/pint"/i.test(content)) {
+        staticTools.push({ name: "Pint", configFile: "composer.json", category: "formatter" });
+        recordedTools.add("Pint");
+      }
+      if (!recordedTools.has("PHP-CS-Fixer") && /"friendsofphp\/php-cs-fixer"/i.test(content)) {
+        staticTools.push({
+          name: "PHP-CS-Fixer",
+          configFile: "composer.json",
+          category: "formatter",
+        });
+        recordedTools.add("PHP-CS-Fixer");
+      }
+      if (!recordedTools.has("PHP_CodeSniffer") && /"squizlabs\/php_codesniffer"/i.test(content)) {
+        staticTools.push({
+          name: "PHP_CodeSniffer",
+          configFile: "composer.json",
+          category: "linter",
+        });
+        recordedTools.add("PHP_CodeSniffer");
+      }
+    } catch {
+      // ignore
+    }
+  }
+
+  // 5. Native statically-typed language indicators (Go, Rust)
   if (existsSync(join(rootDir, "go.mod")) && !recordedTools.has("Go Compiler/Types")) {
     staticTools.push({ name: "Go Type System", configFile: "go.mod", category: "compiler" });
     recordedTools.add("Go Type System");
@@ -221,7 +302,7 @@ function checkCiEnforcement(rootDir: string): boolean {
         if (entry.endsWith(".yml") || entry.endsWith(".yaml")) {
           const content = readFileSync(join(workflowsDir, entry), "utf8");
           if (
-            /\b(?:typecheck|tsc\b|eslint\b|oxlint\b|biome\s+check|ruff\s+check|mypy\b|golangci-lint\b|rubocop\b|cargo\s+(?:check|clippy))\b/i.test(
+            /\b(?:typecheck|tsc\b|eslint\b|oxlint\b|biome\s+check|ruff\s+check|mypy\b|golangci-lint\b|rubocop\b|phpstan\b|psalm\b|pint\b|phpcs\b|cargo\s+(?:check|clippy))\b/i.test(
               content,
             )
           ) {
@@ -240,7 +321,7 @@ function checkCiEnforcement(rootDir: string): boolean {
   if (existsSync(huskyPreCommit)) {
     try {
       const content = readFileSync(huskyPreCommit, "utf8");
-      if (/\b(?:lint|typecheck|tsc|oxlint|eslint|ruff|mypy)\b/i.test(content)) {
+      if (/\b(?:lint|typecheck|tsc|oxlint|eslint|ruff|mypy|phpstan|psalm|pint)\b/i.test(content)) {
         return true;
       }
     } catch {

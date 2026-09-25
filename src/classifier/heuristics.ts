@@ -1,10 +1,11 @@
 import type { TestLayer } from "../types.js";
 import { goClassifier } from "./languages/go.js";
+import { phpClassifier } from "./languages/php.js";
 import { pythonClassifier } from "./languages/python.js";
 import { rubyClassifier } from "./languages/ruby.js";
 import { analyzeStorybook, isStorybookFile } from "./storybook.js";
 
-const LANGUAGE_CLASSIFIERS = [pythonClassifier, goClassifier, rubyClassifier];
+const LANGUAGE_CLASSIFIERS = [pythonClassifier, goClassifier, rubyClassifier, phpClassifier];
 
 export interface ClassifyContext {
   hasPlaywright?: boolean;
@@ -41,6 +42,8 @@ export function detectFileLanguage(filePath: string): string {
       return "Go";
     case ".rb":
       return "Ruby";
+    case ".php":
+      return "PHP";
     case ".rs":
       return "Rust";
     case ".feature":
@@ -125,6 +128,8 @@ const TEST_CASE_PATTERNS = [
   /#\[test\]/g, // Rust test
   /(?:^|\n)\s*Scenario(?:\s+Outline)?\s*:/g, // Cucumber feature scenario
   /(?:^|\n)\s*(?:it|specify|scenario)\s+['"][^'"]+['"]\s+do\b/g, // Ruby RSpec
+  /(?:^|\n)\s*(?:public\s+)?function\s+test[a-zA-Z0-9_]+\s*\(/g, // PHPUnit test methods
+  /(?:^|\n)\s*#\[(?:\\PHPUnit\\Framework\\Attributes\\)?Test\]/g, // PHP 8 test attributes
 ];
 
 const ASSERTION_FALLBACK_PATTERNS = [

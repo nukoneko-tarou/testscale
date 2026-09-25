@@ -48,6 +48,9 @@ export const TEST_FILE_PATTERNS = [
   "**/*_{test,spec}.rb",
   "**/test_*.py",
   "**/*_test.py",
+  "**/*Test.php",
+  "**/*[-._]{test,spec}*.php",
+  "**/test_*.php",
   "**/*.feature",
 ];
 
@@ -62,11 +65,13 @@ const TEST_FILE_REGEX = new RegExp(
     `_(?:test|spec)\\.rb|` +
     // 3. Python: pytest / unittest standard conventions (test_*.py, *_test.py)
     `(?:^|\\/)test_[a-zA-Z0-9_]+\\.py|[a-zA-Z0-9_]+_test\\.py|` +
-    // 4. JS/TS: prefix (test-*, spec-*), suffix/infix (*.test.*, *-test.*, *.spec.*, etc.), and __tests__/
+    // 4. PHP: PHPUnit (*Test.php), Pest (*.test.php, *.spec.php), and test_*.php
+    `[a-zA-Z0-9_]+Test\\.php|[a-zA-Z0-9_]+[._-](?:test|spec)\\.php|(?:^|\\/)test_[a-zA-Z0-9_]+\\.php|` +
+    // 5. JS/TS: prefix (test-*, spec-*), suffix/infix (*.test.*, *-test.*, *.spec.*, etc.), and __tests__/
     `(?:^|\\/)(?:test|spec)[-_][a-zA-Z0-9_-]+(?:\\.[a-zA-Z0-9_-]+)*\\.(?:[jt]sx?|mjs|cjs)|` +
     `[._-](?:test|spec|cy|stories)(?:\\.[a-zA-Z0-9_-]+)*\\.(?:[jt]sx?|mjs|cjs)|` +
     `(?:^|\\/)__tests__\\/.*(?<!\\.d)\\.(?:[jt]sx?|mjs|cjs)|` +
-    // 5. Special test DSLs / BDD / Rust
+    // 6. Special test DSLs / BDD / Rust
     `\\.feature|` +
     `[._-]test\\.rs` +
     `)$`,
@@ -102,7 +107,7 @@ async function discoverFilesViaGit(rootDir: string): Promise<GitDiscoveryResult 
       const line = lines[i]?.trim();
       if (!line) continue;
 
-      // Measure code file typing ratio (TS, Go, Rust vs JS, Python, Ruby)
+      // Measure code file typing ratio (TS, Go, Rust vs JS, Python, Ruby, PHP)
       const dotIdx = line.lastIndexOf(".");
       if (dotIdx !== -1) {
         const ext = line.slice(dotIdx).toLowerCase();
@@ -122,7 +127,8 @@ async function discoverFilesViaGit(rootDir: string): Promise<GitDiscoveryResult 
           ext === ".mjs" ||
           ext === ".cjs" ||
           ext === ".py" ||
-          ext === ".rb"
+          ext === ".rb" ||
+          ext === ".php"
         ) {
           totalCodeFiles++;
         }
